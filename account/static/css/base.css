@@ -9,3 +9,23 @@ body {
 	line-height: 50px;
 }
 
+.menu > li {
+	float: left;
+	list-style-type: none;
+	width: 100px;
+	text-align: center;
+}
+
+.menu > li > a {
+	display: block;
+	line-height: 50px;
+	text-decoration: none;
+}
+
+.menu > li > a:hover {
+	background-color: blue;
+}
+
+.selected {
+	background-color: gray;
+}

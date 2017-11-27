@@ -9,8 +9,30 @@ https://docs.djangoproject.com/en/1.11/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
+# Email settings
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+import sys
+sys.path.append('/home/retarf/projects/security')
+import mail_settings
+
+EMAIL_HOST = mail_settings.email_host
+EMAIL_HOST_USER = mail_settings.email_host_user
+EMAIL_HOST_PASSWORD = mail_settings.email_host_password
+EMAIL_PORT = mail_settings.email_port
+EMAIL_USE_TSL = mail_settings.email_use_tsl
+SMTP_ENABLED = mail_settings.smtp_enabled
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 import os
+
+from django.core.urlresolvers import reverse_lazy
+
+LOGIN_REDIRECT_URL = reverse_lazy('dashboard')
+LOGIN_URL = reverse_lazy('login')
+LOGOUT_URL = reverse_lazy('logout')
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -31,13 +53,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'account',
+    'django.contrib.admin',
 ]
 
 MIDDLEWARE = [
