@@ -47,7 +47,9 @@ SECRET_KEY = 'gdn)w6f(1-aejy$+m=nd%5fjzc@ow4t%169k!b1rxy^d_2c1ar'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'moja-witryna.pl',
+]
 
 
 # Application definition
@@ -58,6 +60,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social.apps.django_app.default',
+    'social_django',
     'account',
     'django.contrib.admin',
 ]
@@ -70,6 +74,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'bookmarks.urls'
@@ -85,6 +90,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -144,3 +151,13 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'account.authentication.EmailAuthBackend',
+    'social.backends.facebook.FacebookOAuth2',
+)
+
+SOCIAL_AUTH_FACEBOOK_KEY = '1e8b4a5b4a7894834a253b7f43d14829'
+SOCIAL_AUTH_FACEBOOK_SECRET = '0af8e1f8a1d6f46f1a053bb1a6477fbf'
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['emial']
