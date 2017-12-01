@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'social.apps.django_app.default',
     'social_django',
     'account',
+    'images',
     'django.contrib.admin',
 ]
 
