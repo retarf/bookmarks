@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     'account',
     'images',
     'django.contrib.admin',
+    'sorl.thumbnail',
 ]
 
 MIDDLEWARE = [
